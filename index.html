@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Портфолио — логотипы и брендинг</title>
+  <style>
+    :root{ --bg:#f5f5f7; --card:#fff; --text:#111; --muted:#555; --border:#e5e5e5; --accent:#1e88e5; }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 16px 60px}
+    header{text-align:left;margin-bottom:12px}
+    header h1{font-size:28px;margin:0 0 6px;font-weight:700;letter-spacing:.2px}
+    header .contact{color:var(--muted);font-size:14px}
+    h2{font-size:22px;margin:18px 0 6px;text-transform:uppercase;letter-spacing:.5px;color:#333}
+    h3{font-size:14px;margin:0 0 12px;color:#777;text-transform:uppercase;letter-spacing:1px}
+    /* grid of cards */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-height:260px}
+    .logo{height:150px;display:flex;align-items:center;justify-content:center;background:#fff;border-bottom:1px solid var(--border)}
+    .logo svg{display:block;width:90%;height:120px}
+    .card-title{padding:12px 12px 6px;font-weight:700;line-height:1.25}
+    .card-title{font-size:16px}
+    .card-cat{padding:0 12px 12px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:0.8px}
+    @media (max-width: 700px){
+      .wrap{padding:20px 12px}
+      .logo{height:140px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>
+Упрощенный портфолио</h1>
+      <div class="contact">+7 915 814 45 42 &nbsp; / &nbsp; @lvtkxv</div>
+    </header>
+
+    <h2>logos &amp; marks</h2>
+    <h3>brand design</h3>
+
+    <section class="grid" id="portfolio"></section>
+  </div>
+
+  <script>
+    // Данные из PDF: список клиентов/категорий брендинга
+    const items = [
+      "schtandart / оконный завод",
+      "предпринимательский форум / ивент",
+      "international trading company / электроника",
+      "green go fest / экофестиваль",
+      "the coasters / общепит",
+      "семейная пекарня / общепит",
+      "hippotoys / детский магазин",
+      "dobro / домашний текстиль",
+      "акселератор роста малого бизнеса / бизнес-проект",
+      "uni-lenta / текстиль",
+      "kuho / интерьерная мастерская",
+      "дом на заречной / культурное пространство",
+      "тихо в доме / шумоизоляция",
+      "формула / автомойка",
+      "снабстор / строительный магазин",
+      "тип топ / детский магазин",
+      "тексмаркет / текстильный магазин",
+      "anycake / кондитер",
+      "aitim / сервисный центр",
+      "tutu look / швейная мастерская",
+      "ital / дизайн интерьера"
+    ];
+
+    const grid = document.getElementById('portfolio');
+    for (const text of items){
+      const card = document.createElement('div');
+      card.className = 'card';
+      // Логотип-заглушка
+      const logo = document.createElement('div');
+      logo.className = 'logo';
+      logo.innerHTML = `
+        <svg viewBox="0 0 200 120" width="100%" height="120" aria-label="логотип-заглушка">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#4a90e2" offset="0"/>
+              <stop stop-color="#50e3c2" offset="1"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="120" fill="url(#g)" />
+          <text x="50%" y="62%" fill="white" font-family="Arial" font-size="14" text-anchor="middle">LOGO</text>
+        </svg>
+      `;
+      const title = document.createElement('div');
+      title.className = 'card-title';
+      title.textContent = text;
+      const tag = document.createElement('div');
+      tag.className = 'card-cat';
+      tag.textContent = 'brand design';
+      card.appendChild(logo);
+      card.appendChild(title);
+      card.appendChild(tag);
+      grid.appendChild(card);
+    }
+  </script>
+</body>
+</html>
